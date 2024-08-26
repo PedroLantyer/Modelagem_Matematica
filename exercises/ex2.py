@@ -1,42 +1,42 @@
 import os
-import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.animation import FuncAnimation
 
 def f(x):
     return (pow(x,2) + (1/x) - 5)
 
-class problem:
-    def __init__(self, intervalStart, intervalEnd, tolerance) -> None:
-        self.intervalStart = intervalStart
-        self.intervalEnd = intervalEnd
-        self.tolerance = tolerance
 
-    def f(self, x):
-        return (pow(x,2) + (1/x) - 5)
 
-    def getResult(self):
-        if (self.f(self.intervalStart) + self.f(self.intervalEnd) == 0):
+def bisection(f, a, b, tolerance):
+    if (f(a) * f(b) == 0):
             print("Fail")
             return None
+    
+    iterrationArr = []
 
-        count = 0
-        
-        c = (self.intervalStart+self.intervalEnd)/2.0
-        while(self.intervalEnd - self.intervalStart)/ 2.0 > self.tolerance:
-            if(self.f(c) == 0):
-                return c
-            elif(self.f(self.intervalStart) * self.f(c) < 0):
-                self.intervalEnd = c
-            else:
-                self.intervalStart = c
-            c = (self.intervalStart+self.intervalEnd)/2.0
-            count += 1
-        
-        results = [c, count]
-        return results
+    c = (a + b) / 2.0
+    while(b - a) / 2.0 > tolerance:
+        iterrationArr.append((a, b, c))
+        if(f(c) == 0):
+            return c
+        elif(f(a) * f(c) < 0):
+            b = c
+        else:
+            a = c
+
+        c = (a + b) / 2.0
+
+    return iterrationArr
+
+def printArr(arr):
+    for x in arr: print(x)
 
 
 if __name__ == "__main__":
-    problemObj = problem(intervalStart=0.0001, intervalEnd=5, tolerance=0.01)
-    results = problemObj.getResult()
-    print(f"Result: {results[0]: .4f}")
-    print(f"Test count {results[1]}")
+    intervalStart = 1e-4
+    intervalEnd = 5
+    tolerance = 1e-2
+
+    iterationArr = bisection(f=f, a=intervalStart, b=intervalEnd, tolerance=tolerance)
+    printArr(iterationArr)

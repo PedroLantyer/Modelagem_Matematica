@@ -3,6 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
 
+def clearTerminal():
+    if os.name.upper() == "NT":
+        os.system("cls")
+
 def f(x):
     return (pow(x,2) + (1/x) - 5)
 
@@ -33,7 +37,7 @@ def printArr(arr):
     try:
         print("Iterations: ")
         for i in range(len(arr)):
-            print(f"A: {arr[i][0]:.4f}, B: {arr[i][1]:.4f}, C: {arr[i][2]:.4f}")
+            print(f"A: {arr[i][0]:.3f}, B: {arr[i][1]:.3f}, C: {arr[i][2]:.3f}")
         print("\n")
     except Exception as err:
         print(err)
@@ -41,19 +45,23 @@ def printArr(arr):
     
 
 if __name__ == "__main__":
-    intervalStart = 1e-4
-    intervalEnd = 5
-    tolerance = 1e-4
+    clearTerminal()
 
+    #Define A, B and Tolerance
+    intervalStart = 1e-3
+    intervalEnd = 5
+    tolerance = 1e-3
+
+    #Create an array that contains the values for each iteration
     iterationArr = bisection(f=f, a=intervalStart, b=intervalEnd, tolerance=tolerance)
     printArr(iterationArr)
+    print(len(iterationArr))
 
 
         # Prepare the plot
-    fig, ax = plt.subplots()
+    figure, ax = plt.subplots()
     x = np.linspace(1e-4, 6, 200)
 
-    print(x)
     y = f(x)
     ax.plot(x, y, 'b-', label='f(x)')
     ax.axhline(0, color='black', lw=0.5)
@@ -61,19 +69,19 @@ if __name__ == "__main__":
     text = ax.text(0.5, 0.5, '', transform=ax.transAxes, ha='center')
 
     # Set up the plot limits and labels
-    ax.set_xlim(0, 6) #SET THE LIMITS FOR THE X AXIS
-    ax.set_ylim(min(y), max(y)) #SET THE LIMITS FOR THE Y AXIS
-    ax.set_xlabel('x') #SET LABEL FOR X AXIS
-    ax.set_ylabel('f(x)') #SET LABEL FOR Y AIXS
+    ax.set_xlim(0, 6) #Set limits for the X axis
+    ax.set_ylim(min(y), 30) #Set limits for the Y axis || UNDER NORMAL CIRCUMSTANCES THE UPPER LIMIT SHOULD BE MAX(Y)
+    ax.set_xlabel('x') #Set label For X axis
+    ax.set_ylabel('f(x)') #Set label for Y axis
     ax.legend()
 
-    # Animation update function
+    # Animation update
     def update(i):
         a, b, c = iterationArr[i]
         line.set_data([a, b], [f(a), f(b)])
-        text.set_text(f'Iteration {i+1}: c = {c:.5f}')
+        text.set_text(f'Iteration {i+1}: c = {c:.3f}')
         return line, text
     
-    ani = FuncAnimation(fig, update, frames=len(iterationArr), interval=2000, repeat=False)
+    ani = FuncAnimation(figure, update, frames=len(iterationArr), interval=2000, repeat=False)
 
     plt.show()

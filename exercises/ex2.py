@@ -74,6 +74,6 @@ if __name__ == "__main__":
         text.set_text(f'Iteration {i+1}: c = {c:.5f}')
         return line, text
     
-    ani = FuncAnimation(fig, update, frames=len(iterationArr), interval=2500, repeat=False)
+    ani = FuncAnimation(fig, update, frames=len(iterationArr), interval=2000, repeat=False)
 
     plt.show()

@@ -79,7 +79,6 @@ def drawGraph(f, data: list, animationTimer:int = 2000):
     except Exception as err:
         print(err)
 
-
 if __name__ == "__main__":
     clearTerminal()
     a = 1e-5

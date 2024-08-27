@@ -55,7 +55,6 @@ if __name__ == "__main__":
     #Create an array that contains the values for each iteration
     iterationArr = bisection(f=f, a=intervalStart, b=intervalEnd, tolerance=tolerance)
     printArr(iterationArr)
-    print(len(iterationArr))
 
 
         # Prepare the plot

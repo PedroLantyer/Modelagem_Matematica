@@ -58,16 +58,6 @@ def drawGraph(f, x0, x1):
 
         y = f(x)
         plt.plot(x, y)
-
-        # Animation update
-        """ def update(i):
-            a, b, c = data[i]
-            line.set_data([a, b], [f(a), f(b)])
-            text.set_text(f'Iteration {i+1}: c = {c:.5f}')
-            return line, text """
-        
-        """ ani = FuncAnimation(figure, update, frames=len(data), interval=animationTimer, repeat=False) """
-
         plt.show()
     
     except Exception as err:
@@ -77,8 +67,8 @@ def drawGraph(f, x0, x1):
 if __name__ == "__main__":
     try:        
         res = secantMethod(f, 0.05, 0.1)
-        print(f"Height: {res[0]: .9f}\nIter:{res[1]}")
-        generateErrorNonConverge()
+        print(f"Height: {res[0]: .9f} meters\nIterations:{res[1]}")
+        #generateErrorNonConverge()
 
         drawGraph(f, 0.001, 0.1)
         

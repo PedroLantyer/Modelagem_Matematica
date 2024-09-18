@@ -73,9 +73,9 @@ def gaussianElimination(matrix: list):
     Para uma matriz n x n, este processo terá (n-1) etapas
 
     A) Montar a matriz aumenta [a|b]
-    B) Detereminação do pivô: Akk
-    C) Definir os multiplicadores de linha: (Mik = (Aik/Akk))
-    D) Atualização das linhas: Line - Mik * Lpivô -> Line
+    B) Detereminação do pivô: Ajj
+    C) Definir os multiplicadores de linha: (Mij = (Aij/Ajj))
+    D) Atualização das linhas: Line - Mij * L_Pivot -> Line
     """
     try:
         printMatrix(matrix=matrix ,lineBreakAfter=True)

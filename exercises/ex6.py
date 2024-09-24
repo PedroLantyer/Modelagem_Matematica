@@ -13,7 +13,7 @@ e a quantidade de livros do clube do livro seja metade da quantidade de livros b
 1*B + 2*C + 3*D = 360
 2*B + 4*C + 5*D = 660
 B = 2*C
-
+<=>
 
 2*X_1 + 3*X_2 = 360
 4*X_1 + 5*X_2 = 660
@@ -161,8 +161,6 @@ def gaussianElimination(matrix: list):
         print(err)
         return None
     
-
-
 if __name__ == "__main__":
     clearScreen()
     getcontext().prec = 2
@@ -171,7 +169,7 @@ if __name__ == "__main__":
 
     #RESULT:
     """
-    BROCHURA = 72
-    CLUBE DO LIVRO = 36
+    BROCHURA = 90
+    CLUBE DO LIVRO = 45
     DELUXE = 60
     """

@@ -1,18 +1,3 @@
-"""
-Uma editora publica um best-seller em 3 apresentaçõa diferentes:
-brochura, clube do livro e deluxe.
-Cada brochura leva 1 minuto para costurar e 2 minutos para colar
-Cada clube do livro leva 2 minuto para costurar e 4 minutos para colar
-Cada deluxe leva 3 minuto para costurar e 5 minutos para colar
-Se a maquina de costurar fica disponível por 6h/dia e a de colar por 11h/dia
-Quantos livros de cada tipo podem ser produzidos de tal maneira que as maquinas sejam aproveitadas ao máximo
-e a quantidade de livros do clube do livro seja metade da quantidade de livros brochura
-"""
-
-"""
-
-"""
-
 from decimal import *
 import os
 
@@ -101,7 +86,7 @@ def getEquations(arr:list):
     except Exception as err:
         print(err)
         return []
-   
+    
 def gaussianElimination(matrix: list):
     """
     I - Fase de eliminação: 
@@ -158,6 +143,5 @@ def gaussianElimination(matrix: list):
 if __name__ == "__main__":
     clearScreen()
     getcontext().prec = 2
-    #matrix = [[Decimal('1'), Decimal('2'), Decimal('3'), Decimal('360')], [Decimal('2'), Decimal('4'), Decimal('5'), Decimal('660')], [Decimal('2'), Decimal('-1'), Decimal('0'), Decimal('0')]]
-    matrix = [[Decimal('3'), Decimal('2'), Decimal('4'), Decimal('1')], [Decimal('1'), Decimal('1'), Decimal('2'), Decimal('2')], [Decimal('4'), Decimal('3'), Decimal('-2'), Decimal('3')]]
+    matrix = [[Decimal('2'), Decimal('3'), Decimal('1'), Decimal('1')], [Decimal('4'), Decimal('7'), Decimal('2'), Decimal('2')], [Decimal('6'), Decimal('18'), Decimal('5'), Decimal('2')]]
     gaussianElimination(matrix=matrix)

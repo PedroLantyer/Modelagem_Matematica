@@ -98,8 +98,6 @@ def gaussianElimination(matrix: list):
     D) Atualização das linhas: Line - Mij * L_Pivot -> Line
     """
     try:
-        #printMatrix(matrix=matrix ,lineBreakAfter=True)
-
         steps = [matrix]
         
         result = matrix.copy()

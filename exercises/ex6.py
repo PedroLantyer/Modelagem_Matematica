@@ -10,6 +10,11 @@ e a quantidade de livros do clube do livro seja metade da quantidade de livros b
 """
 
 from decimal import *
+import os
+
+def clearScreen():
+    if os.name.upper() == "NT":
+        os.system("cls")
 
 def printMatrix(matrix: list, lineSize=35, lineBreakAfter = True):
     try:
@@ -37,7 +42,6 @@ def printMatrix(matrix: list, lineSize=35, lineBreakAfter = True):
     except Exception as err:
         print("Failed to print Matrix")
         print(err)
-
 
 def getLineMultArr(pivot: float, matrix: list, start:int, xPosition: int):
     try:
@@ -91,7 +95,7 @@ def getEquations(arr:list):
     except Exception as err:
         print(err)
         return []
-
+    
 def gaussianElimination(matrix: list):
     """
     I - Fase de eliminação: 
@@ -103,11 +107,12 @@ def gaussianElimination(matrix: list):
     D) Atualização das linhas: Line - Mij * L_Pivot -> Line
     """
     try:
-        printMatrix(matrix=matrix ,lineBreakAfter=True)
+        #printMatrix(matrix=matrix ,lineBreakAfter=True)
 
         steps = [matrix]
         
         result = matrix.copy()
+        getcontext().prec=4
         for iter in range(0, len(matrix)-1):
             pivot = Decimal(result[iter][iter])
             lineStart = iter+1
@@ -128,11 +133,15 @@ def gaussianElimination(matrix: list):
             steps.append(result)
 
         
+        print("Passos da matriz")
+        for arr in steps:
+            printMatrix(arr)
+
         equationArr = getEquations(steps[-1])
+        print("Sistema de equações:")
         for equation in equationArr:
             print(equation)
-        """ for arr in steps:
-            printMatrix(arr) """
+        print()
 
     except Exception as err:
         print(err)
@@ -141,7 +150,8 @@ def gaussianElimination(matrix: list):
 
 
 if __name__ == "__main__":
-    getcontext().prec = 4
+    clearScreen()
+    getcontext().prec = 2
     #matrix = [[Decimal('1'), Decimal('2'), Decimal('3'), Decimal('360')], [Decimal('2'), Decimal('4'), Decimal('5'), Decimal('660')], [Decimal('2'), Decimal('-1'), Decimal('0'), Decimal('0')]]
     matrix = [[Decimal('3'), Decimal('2'), Decimal('4'), Decimal('1')], [Decimal('1'), Decimal('1'), Decimal('2'), Decimal('2')], [Decimal('4'), Decimal('3'), Decimal('-2'), Decimal('3')]]
     gaussianElimination(matrix=matrix)

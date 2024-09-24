@@ -9,6 +9,8 @@ Quantos livros de cada tipo podem ser produzidos de tal maneira que as maquinas 
 e a quantidade de livros do clube do livro seja metade da quantidade de livros brochura
 """
 
+from decimal import *
+
 def printMatrix(matrix: list, lineSize=35, lineBreakAfter = True):
     try:
         strArr = []
@@ -41,7 +43,8 @@ def getLineMultArr(pivot: float, matrix: list, start:int, xPosition: int):
     try:
         lineMultArr = []
         for y in range(start,len(matrix)):
-            lineMult = (matrix[y][xPosition]/float(pivot))
+            getcontext().prec = 4
+            lineMult = (Decimal(matrix[y][xPosition])/Decimal(pivot))
             lineMultArr.append(lineMult)
 
         return lineMultArr
@@ -56,8 +59,9 @@ def rowReplacement(row: list, lineMultiplier: float, firstRow: list):
             raise Exception("Rows must have the same length")
         
         replacedRow = []
+        getcontext().prec = 4
         for i in range(len(row)):
-            element = row[i] - lineMultiplier * firstRow[i]
+            element = Decimal(row[i]) - Decimal(lineMultiplier) * Decimal(firstRow[i])
             replacedRow.append(element)
 
         return replacedRow
@@ -66,6 +70,27 @@ def rowReplacement(row: list, lineMultiplier: float, firstRow: list):
         print("Failed row replacement")
         print(err)
         return None
+
+def getEquations(arr:list):
+    try:
+        equationArr = []
+        for i in range(len(arr)):
+            elementCount = len(arr[i])
+            equationStr = ""
+            for j in range(elementCount):
+                if (elementCount-j-1 == 0):
+                    equationStr += "= "
+                equationStr += f"({(arr[i][j]):.2f})"
+                if (elementCount-j-1 != 0):
+                    equationStr+= f"*X_{(elementCount-j-1)} "
+                if(j < elementCount-2):
+                    equationStr+= "+ "
+
+            equationArr.append(equationStr)
+        return equationArr
+    except Exception as err:
+        print(err)
+        return []
 
 def gaussianElimination(matrix: list):
     """
@@ -84,7 +109,7 @@ def gaussianElimination(matrix: list):
         
         result = matrix.copy()
         for iter in range(0, len(matrix)-1):
-            pivot = result[iter][iter]
+            pivot = Decimal(result[iter][iter])
             lineStart = iter+1
 
             lineMultArr = getLineMultArr(pivot=pivot, matrix=result, start=lineStart, xPosition=iter)
@@ -102,8 +127,12 @@ def gaussianElimination(matrix: list):
             result = adjustedMatrix.copy()
             steps.append(result)
 
-        for arr in steps:
-            printMatrix(arr)
+        
+        equationArr = getEquations(steps[-1])
+        for equation in equationArr:
+            print(equation)
+        """ for arr in steps:
+            printMatrix(arr) """
 
     except Exception as err:
         print(err)
@@ -112,6 +141,7 @@ def gaussianElimination(matrix: list):
 
 
 if __name__ == "__main__":
-    #matrix = [[1.0, 2.0, 3.0, 360.0],[2.0, 4.0, 5.0, 660.0],[2.0, -1.0, 0, 0]]
-    matrix = [[3, 2, 4, 1],[1,1,2,2],[4,3,-2,3]]
+    getcontext().prec = 4
+    #matrix = [[Decimal('1'), Decimal('2'), Decimal('3'), Decimal('360')], [Decimal('2'), Decimal('4'), Decimal('5'), Decimal('660')], [Decimal('2'), Decimal('-1'), Decimal('0'), Decimal('0')]]
+    matrix = [[Decimal('3'), Decimal('2'), Decimal('4'), Decimal('1')], [Decimal('1'), Decimal('1'), Decimal('2'), Decimal('2')], [Decimal('4'), Decimal('3'), Decimal('-2'), Decimal('3')]]
     gaussianElimination(matrix=matrix)

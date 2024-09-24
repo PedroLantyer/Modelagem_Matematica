@@ -1,4 +1,4 @@
-#Uma boi esferica de volume de 10l e massa 2kg flutua em um corpo de agua
+#Uma boia esferica de volume de 10l e massa 2kg flutua em um corpo de agua
 #qual a altura da parte molhada da boia
 
 import math

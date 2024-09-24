@@ -149,6 +149,9 @@ def gaussianElimination(matrix: list):
             printMatrix(arr)
 
         equationArr = getEquations(steps[-1])
+        if(len(equationArr) == 0):
+            raise "Failed to get Equations"
+
         print("Sistema de equações:")
         for equation in equationArr:
             print(equation)

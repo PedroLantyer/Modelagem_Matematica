@@ -10,6 +10,11 @@ e a quantidade de livros do clube do livro seja metade da quantidade de livros b
 """
 
 """
+1*B + 2*C + 3*D = 360
+2*B + 4*C + 5*D = 660
+B = (C/2)
+
+
 5*X_1 + 3*X_2 = 360
 10*X_1 + 5*X_2 = 660
 """

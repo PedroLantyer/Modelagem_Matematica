@@ -159,7 +159,7 @@ def gaussianElimination(matrix: list):
 if __name__ == "__main__":
     clearScreen()
     getcontext().prec = 2
-    matrix = [[Decimal('5'), Decimal('3'), Decimal('360')], [Decimal('10'), Decimal('5'), Decimal('660')]]
+    matrix = [[Decimal('5'), Decimal('3'), Decimal('360')], [Decimal('2'), Decimal('1'), Decimal('132')]]
     gaussianElimination(matrix=matrix)
 
     #RESULT:

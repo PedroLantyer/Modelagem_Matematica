@@ -10,7 +10,8 @@ e a quantidade de livros do clube do livro seja metade da quantidade de livros b
 """
 
 """
-
+5*X_1 + 3*X_2 = 360
+10*X_1 + 5*X_2 = 660
 """
 
 from decimal import *
@@ -158,6 +159,13 @@ def gaussianElimination(matrix: list):
 if __name__ == "__main__":
     clearScreen()
     getcontext().prec = 2
-    #matrix = [[Decimal('1'), Decimal('2'), Decimal('3'), Decimal('360')], [Decimal('2'), Decimal('4'), Decimal('5'), Decimal('660')], [Decimal('2'), Decimal('-1'), Decimal('0'), Decimal('0')]]
-    matrix = [[Decimal('3'), Decimal('2'), Decimal('4'), Decimal('1')], [Decimal('1'), Decimal('1'), Decimal('2'), Decimal('2')], [Decimal('4'), Decimal('3'), Decimal('-2'), Decimal('3')]]
+    matrix = [[Decimal('5'), Decimal('3'), Decimal('360')], [Decimal('10'), Decimal('5'), Decimal('660')]]
+    #matrix = [[Decimal('3'), Decimal('2'), Decimal('4'), Decimal('1')], [Decimal('1'), Decimal('1'), Decimal('2'), Decimal('2')], [Decimal('4'), Decimal('3'), Decimal('-2'), Decimal('3')]]
     gaussianElimination(matrix=matrix)
+
+    #RESULT:
+    """
+    BROCHURA = 72
+    CLUBE DO LIVRO = 36
+    DELUXE = 60
+    """

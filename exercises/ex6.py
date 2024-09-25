@@ -92,15 +92,15 @@ def getEquations(arr:list):
             elementCount = len(arr[i])
             equationStr = ""
             for j in range(elementCount):
-                if((arr[i][j]) != 0):
-                    if(j < elementCount-1):
-                        equationStr += f"({(arr[i][j]):.2f})"
-                        equationStr+= f"*X_{(j+1)}"
-                        if(j < elementCount-2):
-                            equationStr+= " + " 
-                    else:
-                        equationStr += " = "
-                        equationStr += f"({(arr[i][j]):.2f})"
+                
+                if(j < elementCount-1):
+                    equationStr += f"({(arr[i][j]):.2f})"
+                    equationStr+= f"*X_{(j+1)}"
+                    if(j < elementCount-2):
+                        equationStr+= " + " 
+                else:
+                    equationStr += " = "
+                    equationStr += f"({(arr[i][j]):.2f})"
                 
 
             equationArr.append(equationStr)
@@ -108,7 +108,7 @@ def getEquations(arr:list):
     except Exception as err:
         print(err)
         return []
-   
+    
 def gaussianElimination(matrix: list):
     """
     I - Fase de eliminação: 

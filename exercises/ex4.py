@@ -32,7 +32,7 @@ def newton_raphson(f, df, x0: float, tolerance:float = 1e-1, max_iter:int = 100)
 
 def falPos(f, a:float, b:float, tolerance:float = 1e-1):
     if f(a) * f(b) >= 0:
-        print("Falsa posiçõa falhou")
+        print("Falsa posição falhou")
         return None
     
     iterations = 0
